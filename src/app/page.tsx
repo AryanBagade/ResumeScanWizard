@@ -6,6 +6,7 @@ import FileUpload from '@/components/FileUpload';
 import ResumeResults from '@/components/ResumeResults';
 import HonestResumeReview from '@/components/HonestResumeReview';
 import InterviewModal from '@/components/InterviewModal';
+import MarionetteStory from '@/components/MarionetteStory';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -167,6 +168,60 @@ export default function Home() {
                   >
                     <span className="mr-2">🎭</span>
                     Start Brutal AI Interview
+                    <span className="ml-2">→</span>
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+          )}
+
+          {/* Honest Review Button */}
+          {parsedData && (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="w-full max-w-4xl mx-auto"
+            >
+              <Card className="overflow-hidden border-0 bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 p-[1px]">
+                <div className="bg-background rounded-lg p-8 text-center">
+                  <motion.div
+                    animate={{
+                      rotate: [0, -5, 5, 0],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    }}
+                    className="mb-6"
+                  >
+                    <div className="flex items-center justify-center space-x-3 text-4xl">
+                      <span>💀</span>
+                      <span>🎭</span>
+                      <span>🔥</span>
+                    </div>
+                  </motion.div>
+
+                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                    The Honest Truth About Your Resume
+                  </h2>
+
+                  <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+                    Ready to discover what really happens when people read your resume? Witness the brutal honesty unfold...
+                  </p>
+
+                  <Button
+                    onClick={() => {
+                      const candidateName = parsedData?.name || 'candidate';
+                      window.open(`/story?name=${encodeURIComponent(candidateName)}`, '_blank');
+                    }}
+                    size="lg"
+                    className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold px-8 py-4 rounded-xl transform transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+                  >
+                    <span className="mr-2">🎭</span>
+                    Honest Review Your Interview
                     <span className="ml-2">→</span>
                   </Button>
                 </div>
