@@ -4,6 +4,7 @@ import { useState } from 'react';
 import FileUpload from '@/components/FileUpload';
 import ResumeResults from '@/components/ResumeResults';
 import HonestResumeReview from '@/components/HonestResumeReview';
+import InterviewModal from '@/components/InterviewModal';
 
 interface ParsedResumeData {
   name?: string;
@@ -41,6 +42,7 @@ export default function Home() {
   const [isUploading, setIsUploading] = useState(false);
   const [parsedData, setParsedData] = useState<ParsedResumeData | null>(null);
   const [error, setError] = useState<string>('');
+  const [isInterviewModalOpen, setIsInterviewModalOpen] = useState(false);
 
   const handleFileSelect = async (file: File) => {
     setIsUploading(true);
@@ -96,7 +98,35 @@ export default function Home() {
             isLoading={isUploading}
             error={error}
           />
+
+          {parsedData && (
+            <div className="w-full max-w-4xl mx-auto p-6">
+              <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg p-6 text-center">
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <span className="text-3xl">🎯</span>
+                  <h2 className="text-2xl font-bold text-white">Ready for the Interview?</h2>
+                  <span className="text-3xl">🔥</span>
+                </div>
+                <p className="text-purple-100 mb-6">
+                  Think your resume is impressive? Let our brutal AI interviewer put you to the test!
+                </p>
+                <button
+                  onClick={() => setIsInterviewModalOpen(true)}
+                  className="bg-white text-purple-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105"
+                >
+                  🎭 Start Brutal AI Interview
+                </button>
+              </div>
+            </div>
+          )}
         </div>
+
+        <InterviewModal
+          isOpen={isInterviewModalOpen}
+          onClose={() => setIsInterviewModalOpen(false)}
+          resumeText={parsedData?.rawText || ''}
+          parsedData={parsedData}
+        />
       </div>
     </div>
   );
