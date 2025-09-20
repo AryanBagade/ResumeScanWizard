@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resume Parser
+
+A Next.js application that parses resumes using Grok AI to extract structured data from PDF, DOC, DOCX, and TXT files.
+
+## Features
+
+- **File Upload**: Drag & drop or browse to upload resume files
+- **AI-Powered Parsing**: Uses Grok AI to extract structured data
+- **Multiple Formats**: Supports PDF, DOC, DOCX, and TXT files
+- **Structured Output**: Extracts name, email, phone, experience, education, skills, and summary
+- **Modern UI**: Clean, responsive design with dark mode support
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ installed
+- Grok API key from [X AI Console](https://console.x.ai/)
+
+### Installation
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Set up environment variables by copying the example:
+```bash
+# The .env.local file is already created for you
+# Just add your Grok API key to it
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Add your Grok API key to `.env.local`:
+```
+GROK_API_KEY=your_actual_api_key_here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## How to Get Grok API Key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Visit [X AI Console](https://console.x.ai/)
+2. Sign up or log in with your X/Twitter account
+3. Navigate to API Keys section
+4. Create a new API key
+5. Copy the key and add it to your `.env.local` file
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. Open the application in your browser
+2. Upload a resume file (PDF, DOC, DOCX, or TXT)
+3. Wait for Grok AI to process and extract the data
+4. View the structured results including:
+   - Personal information (name, email, phone)
+   - Professional summary
+   - Work experience
+   - Education
+   - Skills
+   - Raw text
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Supported File Formats
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **PDF**: Full text extraction
+- **DOC/DOCX**: Microsoft Word documents
+- **TXT**: Plain text files
+
+## Fallback Parsing
+
+If Grok AI is unavailable or fails, the app includes basic regex-based parsing for:
+- Email addresses
+- Phone numbers
+- Names
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **File Processing**:
+  - PDF: pdf-parse
+  - DOC/DOCX: mammoth
+  - File handling: formidable
+- **AI**: Grok API (X AI)
+
+## API Routes
+
+- `POST /api/parse-resume`: Handles file upload and parsing
+
+## Environment Variables
+
+```
+GROK_API_KEY=your_grok_api_key_here
+```
