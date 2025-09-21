@@ -14,6 +14,13 @@ export default function InterviewModal({ isOpen, onClose, resumeText, parsedData
   const [conversationUrl, setConversationUrl] = useState<string | null>(null);
   const [error, setError] = useState<string>('');
 
+  const handleClose = () => {
+    // Reset state
+    setConversationUrl(null);
+    setError('');
+    onClose();
+  };
+
   const startInterview = async () => {
     setIsStarting(true);
     setError('');
@@ -62,7 +69,7 @@ export default function InterviewModal({ isOpen, onClose, resumeText, parsedData
               <span className="text-2xl">🔥</span>
             </div>
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="text-white hover:text-gray-200 text-2xl"
             >
               ×
