@@ -20,7 +20,7 @@ export default function FeedbackStep({ wizard }: FeedbackStepProps) {
   const parsedData = processingData?.parsedData;
 
   useEffect(() => {
-    // Auto-complete this step since it's just accessing features
+    // Mark step as completed since features are loaded
     wizard.completeStep();
   }, [wizard]);
 

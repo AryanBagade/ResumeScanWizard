@@ -27,8 +27,7 @@ export default function ActionsStep({ wizard, onNext }: ActionsStepProps) {
 
   const handleInterviewClose = () => {
     setIsInterviewModalOpen(false);
-    // Mark this step as completed when interview is closed
-    wizard.completeStep();
+    // Just close the modal, don't auto-advance
   };
 
   const handleSkipToNext = () => {

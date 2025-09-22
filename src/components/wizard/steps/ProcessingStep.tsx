@@ -105,11 +105,6 @@ export default function ProcessingStep({ wizard, data, onNext }: ProcessingStepP
 
       wizard.completeStep();
 
-      // Auto-advance after showing success
-      setTimeout(() => {
-        onNext();
-      }, 2000);
-
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Processing failed');
       setIsProcessing(false);

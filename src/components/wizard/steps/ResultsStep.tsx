@@ -23,7 +23,7 @@ export default function ResultsStep({ wizard, data }: ResultsStepProps) {
 
   useEffect(() => {
     if (parsedData) {
-      // Auto-complete this step since it's just viewing results
+      // Mark step as completed since results are loaded
       wizard.completeStep();
     }
   }, [parsedData, wizard]);

@@ -38,11 +38,6 @@ export default function UploadStep({ wizard, data, onNext }: UploadStepProps) {
       // Mark step as completed
       wizard.completeStep();
 
-      // Auto-advance to next step after a brief delay
-      setTimeout(() => {
-        onNext();
-      }, 1000);
-
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Upload failed');
     } finally {
